@@ -1,10 +1,11 @@
 {
-  "name": "anna-university-clg",
+  "name": "annauniversityclg",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
   },
   "author": "arunmani",
   "license": "ISC",
