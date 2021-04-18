@@ -1,0 +1,31 @@
+<% layout('layouts/boiler')%>
+<link rel="stylesheet" href="/styles/question.css">
+
+      <div class="qs">
+      <h3>QUESTION:<%= qn.question %> <span class="auname">&#8594;<%=qn.author.name%></span></h3>
+    </div>
+      <div class="answer">
+        
+          <form action="/colledge/<%=clg._id%>/answer/<%=qn._id%>" method="POST">
+              <label for="answer">Give a ansewr</label>
+              <br>
+              <textarea name="answer" id="answer" cols="50" rows="3"></textarea>
+              <br>
+              <button class="btnqs" style="margin-left: 0;">submit</button>
+          </form>
+          <% for(let ans of qn.answer) {%> 
+          <p><%= ans.answer %> <span style="color: #777;"> <br> ---<%= ans.author.username %> </span></p>
+          
+
+          <%  if( currentUser && ans.author.equals(currentUser._id))  {%>
+            <form action="/colledge/<%=clg._id%>/question/<%=ans._id%>/<%=qn._id%>?_method=DELETE" method="POST">
+                <button class="btn">Delete</button>
+            </form>
+            <% } %>
+            <hr>
+           <% } %> 
+      </div>
+      <div class="qs" style="margin-top: 30px; margin-bottom: 30px;">
+        <a class="btnqs" href="/colledge/<%=clg._id%>" style="margin: 0;">Back</a> 
+      </div>
+ 

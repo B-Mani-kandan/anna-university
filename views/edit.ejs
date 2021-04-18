@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/styles/style4.css">
+</head>
+
+<body>
+
+
+
+
+
+
+
+
+
+    <div class="jform">
+        <form action="/colledge/<%=clg._id%>/?_method=PUT" method="POST" enctype="multipart/form-data">
+            <label for="jform_name">Name of the College</label>
+            <input type="text" name="jform[NameoftheCollege]" id="jform_name" required aria-required="true"
+                value="<%= clg.NameoftheCollege %> " />
+
+
+            <label for="jform_Address">Address</label>
+            <input type="text" name="jform[Address]" id="jform_Address" required aria-required="true"
+                value="<%= clg.Address %>" />
+
+
+            <label for="NameofthePrincipal">Name of the Principal</label>
+            <input type="text" name="jform[NameofthePrincipal]" id="NameofthePrincipal" required aria-required="true"
+                value="<%= clg.NameofthePrincipal %> " />
+
+
+
+            <label for="jform_PhoneNumber">PhoneNumber</label>
+            <input type="text" name="jform[PhoneNumber]" id="jform_PhoneNumber" required aria-required="true"
+                value="<%=clg.PhoneNumber%>" />
+
+
+
+            <label for="jform_FaxNumber">FaxNumber</label>
+            <input type="text" name="jform[FaxNumber]" id="jform_FaxNumber" required aria-required="true"
+                value="<%=clg.FaxNumber%>">
+
+
+            <label for="jform_YearofEstablishment">YearofEstablishment</label>
+            <input type="number" name="jform[YearofEstablishment]" id="jform_YearofEstablishment" required
+                aria-required="true" value="<%=clg.YearofEstablishment%>">
+
+
+
+            <label for="jform_Type">Type</label>
+            <input type="text" name="jform[Type]" id="jform_Type" required aria-required="true" value="<%=clg.Type%>">
+
+
+            <label for="EmailID"> EmailID</label>
+            <input type="email" name="jform[EmailID]" id="EmailID" required value="<%=clg.EmailID%>" />
+
+
+
+            <label for="WebSite">WebSite</label>
+            <input type="text" name="jform[WebSite]" id="WebSite" required aria-required="true"
+                value="<%=clg.WebSite%>">
+
+            <label for="img">add images</label>
+            <input type="file" name="img" id="img" multiple>
+
+
+            <label for="MinorityStatus">MinorityStatus</label>
+            <input type="text" name="jform[MinorityStatus]" id="MinorityStatus" required aria-required="true"
+                value="<%=clg.MinorityStatus%>">
+
+            <label for="ExistingCourses">ExistingCourses</label>
+            <select name="jform[ExistingCourses]" id="ExistingCourses" multiple required>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Manufacturing Engineering">Manufacturing Engineering</option>
+                <option value="Plastic Technology">Plastic Technology</option>
+                <option value="CAD/CAM (ME)">CAD/CAM (ME)</option>
+                <option value="Plastic Technology(M.TECH)">Plastic Technology(M.TECH)</option>
+                <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                <option value="Electronics and Communication Engineering">Engineering</option>
+                <option value="Industrial Engineering">Industrial Engineering</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Manufacturing Engineering">Manufacturing Engineering</option>
+                <option value="Chemical Engineering">Chemical Engineering</option>
+                <option value="Architecture(b.Arch)"> Architecture(b.Arch)</option>
+                <option value="Computer Science and Engineering ">Computer Science and Engineering </option>
+                <option value="Architecture(M.Arch)">Architecture(M.Arch)</option>
+                <option value="Real Estate Development(M.Arch)">Real Estate Development(M.Arch)</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Electronics and Instrumentation Engineering">Electronics and Instrumentation Engineering
+                </option>
+                <option value="Master of Business Administration(MBA)">Master of Business Administration(MBA)</option>
+                <option value="Master of Computer Applications(MCA)">Master of Computer Applications(MCA)</option>
+                <option value="Applied Electronics(ME)">Applied Electronics(ME)</option>
+                <option value="Computer Science and Engineering(ME)">Computer Science and Engineering(ME)</option>
+                <option value="Power Electronics and Drives(ME)">Power Electronics and Drives(ME)</option>
+                <option value="Construction Engineering and Management(ME)">Construction Engineering and Management(ME)
+                </option>
+                <option value="Infrastructure Engineering & Management(ME)">Infrastructure Engineering & Management(ME)
+                </option>
+                <option value="E-Learning Technologies(ME)">E-Learning Technologies(ME)</option>
+                <option value="Electronics and Communication Engineering(ME)">Electronics and Communication
+                    Engineering(ME)</option>
+                <option value="Aerospace Engineering">Aerospace Engineering</option>
+                <option value="Biomedical Engineering">Biomedical Engineering</option>
+                <option value="Mechanical and Automation Engineering">Mechanical and Automation Engineering</option>
+                <option value="Communication Systems(ME)">Communication Systems(ME)</option>
+                <option value="Structural Engineering(ME)">Structural Engineering(ME)</option>
+                <option value="Biomedical Engineering(ME)">Biomedical Engineering(ME)</option>
+                <option value="Mechatronics Engineering(ME)">Mechatronics Engineering(ME)</option>
+                <option value="Embedded System Technologies(ME)">Embedded System Technologies(ME)</option>
+                <option value="VLSI Design(ME)">VLSI Design(ME)</option>
+                <option value="BioTechnology">BioTechnology</option>
+                <option value="Artificial Intelligence and Data Science">Artificial Intelligence and Data Science
+                </option>
+                <option value="Computer Science and Business Systems">Computer Science and Business Systems</option>
+                <option value="Petroleum Engineering">Petroleum Engineering</option>
+                <option value="Robotics and Automation">Robotics and Automation</option>
+                <option value="Biometrics and Cyber Security(ME)">Biometrics and Cyber Security(ME)</option>
+                <option value="Construction Engineering and Management">Construction Engineering and Management(ME)
+                </option>
+                <option value="Software Engineering(ME)">Software Engineering(ME)</option>
+                <option value=" Environmental Science and Technology(ME)"> Environmental Science and Technology(ME)
+                </option>
+            </select>
+
+            <% clg.img.forEach(function(im,i){ %>
+                <br>
+                <img src="<%=im.url%>" style="width: 100px;" alt="">
+                <input type="checkbox" class="checkbox" style="display: inline;" id="image-<%=i%>" name="deleteImages[]"
+                    value="<%=im.filename%>">
+                <label for="image-<%=i%>">Delete</label>
+                <% }) %>
+                    <button>submit</button>
+        </form>
+    </div>
+</body>
+
+</html>

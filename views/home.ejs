@@ -1,0 +1,19 @@
+<% layout('layouts/boiler')%>
+
+
+<div class="home">
+  <% for(let clg of colledges) { %>
+    <div class="card">
+        <div class="card-head">
+        <img src="<%=clg.img[0].url%>" alt="pic">
+        </div>
+        <div class="card-body">
+        <h3><%= clg.NameoftheCollege %></h3>
+        <a href="colledge/<%=clg._id%>">Show</a>
+        </div>
+        <br>
+    </div>
+    <% } %>
+</div>
+
+  

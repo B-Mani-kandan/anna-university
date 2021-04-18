@@ -1,0 +1,65 @@
+.answer{
+    width: 80%;
+    margin: 0 auto;
+    border: 1px solid #777;
+    padding: 15px;
+    box-sizing: border-box;
+    height: 100vh;
+    overflow-y: scroll;
+}
+
+.qs{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.auname{
+    color: #777;
+    font-size: 16px;
+}
+
+.btn{
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+    border-radius: 2px;
+}
+
+.map3{
+    width: 60%;
+    height: 100%;
+}
+@media only screen and (max-width: 600px) {
+    .map3{
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .answer{
+        width: 100%;
+    }
+    .qs{
+        width: 100%;
+    }
+    .container-show{
+       flex-direction: column;
+       width: 100%;
+    }
+    .show-clg{
+        width: 100%;
+    }
+    .star-box{
+        width: 100%;
+    }
+    .mapContainer{
+        width: 100%;
+        flex-direction: column;
+        height: 1000px;
+    }
+    .question-sec{
+        width: 100%;
+    }
+    .btn-box{
+        margin-left: 0;
+    }
+  }
+

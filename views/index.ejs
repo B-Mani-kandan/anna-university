@@ -1,0 +1,45 @@
+<% layout('layouts/boiler')%>
+<link rel="stylesheet" href="/styles/home.css">
+</head>
+<body>
+
+<div class="homemap">  
+<div id="map"></div>
+<div class="mapclg">
+
+    <div class="card">
+        <div class="card-head">
+        <img src="<%=colledges[0].img[0].url%>" alt="pic">
+        </div>
+        <div class="card-body">
+        <h3><%=colledges[0].NameoftheCollege %></h3>
+        <a href="colledge/<%=colledges[0]._id%>">Show</a>
+        </div>
+        <br>
+    </div>
+    <div class="card">
+      <div class="card-head">
+      <img src="<%=colledges[1].img[0].url%>" alt="pic">
+      </div>
+      <div class="card-body">
+      <h3><%=colledges[1].NameoftheCollege %></h3>
+      <a href="colledge/<%=colledges[1]._id%>">Show</a>
+      </div>
+      <br>
+   
+  </div>
+
+  <a href="/colledge" class="clgbutton">All colledges</a>
+
+  <div class="circle"></div>
+  <p class="cirtext">&#8594;	for group of colledge(click to view the group of colledge)</p>
+  <div class="circle-2"></div>
+  <p class="cirtext-2">&#8594;	for single colledge(click to vist the colledge)</p>
+
+</div>
+</div>
+<script>
+  const colledges = { features: <%- JSON.stringify(colledges) %>}
+</script>
+<script src="/js/maphome.js"></script>
+ 

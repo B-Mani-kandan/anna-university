@@ -1,0 +1,193 @@
+<% layout('layouts/boiler')%>
+<link rel="stylesheet" href="/styles/star.css">
+<link rel="stylesheet" href="/styles/question.css">
+
+    <div class="container-show">
+    <div class="show-clg">
+    <!-- <div class="show-clg-head"> -->
+    <div class="slideshow-container">
+    <% for(let img of clg.img) { %> 
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+          <img src="<%=img.url%>" >
+        </div>  
+      <br>
+     
+    <% } %> 
+    <% if(clg.img.length>1) {%> 
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    <% } %> 
+</div>
+    <!-- </div> -->
+    <div class="show-clg-body"> 
+    <h4><%= clg.NameoftheCollege %></h4>
+    <p1><span>Address: </span><%= clg.Address %></p1>
+    <p1><span>Name of the prinicple: </span><%= clg.NameofthePrincipal %></p1>
+    <p1><span>Phonenumber: </span><%= clg.PhoneNumber%></p1>
+    <p1><span>Faxnumber: </span><%= clg.FaxNumber %></p1>
+    <p1><span>Website: </span><%= clg.WebSite %></p1>
+    <p1><span>EmailID: </span><%= clg.EmailID %></p1>
+    <p1><span>Year of YearofEstablishment: </span><%= clg.YearofEstablishment%></p1>
+    <p1><span>Type: </span><%= clg.Type%></p1>
+    <p1><span>MinorityStatus: </span><%= clg.MinorityStatus%></p1>
+   
+    <p1><span>ExistingCourses: </span><% for(let a of clg.ExistingCourses) {%>
+         <p><%= a %> </p>
+         <% } %> 
+     </p1>
+    </div> 
+    </div>
+
+
+    <div class="star-box">
+    <% if(!currentUser) {%>
+      <p class="signin">sign in to leave a rating :)</p>
+     
+      <% if(avgrating) { %> 
+      <h2></h2><span class="avgr">avg ratin:<span class="customstar">&#9733;</span><%= avgrating %>(<%= totalRating %>) </span>
+      <% } %> 
+    <% } %>  
+    <% if(currentUser){ %>
+    
+      <h2>Leave a Review</h2><span class="avgr">avg ratin:<span class="customstar">&#9733;</span><%= avgrating %>(<%=totalRating%>)</span>
+      <form action="/colledge/<%=clg._id%>/reviews" method="POST" >
+          <!-- <div class="mb-3">
+              <label class="form-label" for="rating">Rating</label>
+              <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
+          </div> -->
+          <fieldset class="starability-basic">
+              <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="1" checked
+                  aria-label="No rating." />
+              <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+              <label for="first-rate1" title="Terrible">1 star</label>
+              <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+              <label for="first-rate2" title="Not good">2 stars</label>
+              <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+              <label for="first-rate3" title="Average">3 stars</label>
+              <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+              <label for="first-rate4" title="Very good">4 stars</label>
+              <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+              <label for="first-rate5" title="Amazing">5 stars</label>
+          </fieldset>
+          <div>
+              <label class="form-label" for="body">Review Text</label>
+              <textarea  name="review[body]" id="body" cols="40" rows="3" required></textarea>
+          </div>
+          <button class="btn btn-success">Submit</button>
+      </form>
+      <% } %>
+      <div class="reviewcon">
+      <% for(let review of clg.reviews) { %>
+            <div class="card-body-2">
+                <p class="starability-result" data-rating="<%=review.rating%>">
+                    Rated: <%= review.rating %> stars
+                </p>
+                <h3><span>By </span><%= review.author.name%></h3>
+                <p>Review: <%= review.body %></p>
+                <%  if( currentUser && review.author.equals(currentUser._id))  {%>
+                <form action="/colledge/<%=clg._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                    <button class="btn btn-success">Delete</button>
+                </form>
+                <% } %>
+            </div>
+        <% } %>
+      </div>
+    </div>
+
+  </div>
+    
+    <div class="btn-box">
+        <a href="/colledge">Back</a>
+        <%  if( currentUser && clg.author.equals(currentUser._id))  {%>
+    <form action="/colledge/<%=clg._id%>?_method=DELETE" method="POST">
+        <button>Delete</button>
+    </form>
+
+    <a href="/colledge/<%=clg._id%>/Edit">edit</a>
+    <% } %>
+
+  </div>
+  <div class="mapContainer">
+  <div id='map'  class="map3"></div>
+  <div class="question-sec">
+    <div class="qsform">
+      <% if(!currentUser) {%>
+        <p class="signin" style="margin-left: 10px;">sign in to leave a question :)</p>
+        <% } %>  
+    <% if(currentUser){ %>
+    <form action="/colledge/<%=clg._id%>/question" method="POST">
+      <label for="text">Have a doubt? leave a question</label>
+      <textarea name="question[question]" id="" cols="40" rows="3"></textarea>
+      <button class="btnqs">Submit</button>
+    </form>
+    <% } %> 
+  </div>
+  <div class="question-ans">
+    <% for(let qns of clg.question) { %>
+     
+      <p><%= qns.question %> &#8594;by <span style="color: green;"><%= qns.author.name %></span>  </p>
+      <a href="/colledge/<%=clg._id%>/question/<%=qns._id%>">view answer</a>
+
+      <%  if( currentUser && qns.author.equals(currentUser._id))  {%>
+        <form action="/colledge/<%=clg._id%>/question/<%=qns._id%>?_method=DELETE" method="POST">
+            <button class="btn btn-success">Delete</button>
+        </form>
+        <% } %>
+        <hr>
+
+    <% } %>
+  </div>
+  </div>
+
+</div>
+
+<script>
+    var slideIndex = 1;
+showSlides(slideIndex);
+
+// Next/previous controls
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+// Thumbnail image controls
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+
+function showSlides(n) {
+  var i;
+  var slides = document.getElementsByClassName("mySlides");
+  var dots = document.getElementsByClassName("dot");
+  if (n > slides.length) {slideIndex = 1}
+  if (n < 1) {slideIndex = slides.length}
+  for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";
+  }
+  for (i = 0; i < dots.length; i++) {
+      dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";
+  dots[slideIndex-1].className += " active";
+}
+</script>
+   
+<script>
+  let name="<%=clg.NameoftheCollege%>"
+  mapboxgl.accessToken = 'pk.eyJ1IjoiYXJ1bm1hbmkiLCJhIjoiY2tqbzZhb3R3MDZlMjJzbzVkeG1zYzZueSJ9.mZFqpmFOtpXoBVFJUqSLeg';
+  var map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/navigation-guidance-day-v4',
+    zoom:9,
+    center:['<%=clg.Longitude%>','<%=clg.Latitude%>']
+  })
+  
+  new mapboxgl.Marker()
+  .setLngLat(['<%=clg.Longitude%>','<%=clg.Latitude%>'])
+  .setPopup(new mapboxgl.Popup({offset:25}).setHTML(`<h3>${name}</h3>`))
+  .addTo(map)
+</script>
+
+   
