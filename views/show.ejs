@@ -98,19 +98,7 @@
 
   </div>
     
-    <div class="btn-box">
-        <a href="/colledge">Back</a>
-        <%  if( currentUser && clg.author.equals(currentUser._id))  {%>
-    <form action="/colledge/<%=clg._id%>?_method=DELETE" method="POST">
-        <button>Delete</button>
-    </form>
-
-    <a href="/colledge/<%=clg._id%>/Edit">edit</a>
-    <% } %>
-
-  </div>
   <div class="mapContainer">
-  <div id='map'  class="map3"></div>
   <div class="question-sec">
     <div class="qsform">
       <% if(!currentUser) {%>
@@ -140,9 +128,20 @@
     <% } %>
   </div>
   </div>
-
+  <div id='map'  class="map3"></div>
 </div>
 
+<div class="btn-box">
+  <a href="/colledge">Back</a>
+  <%  if( currentUser && clg.author.equals(currentUser._id))  {%>
+<form action="/colledge/<%=clg._id%>?_method=DELETE" method="POST">
+  <button>Delete</button>
+</form>
+
+<a href="/colledge/<%=clg._id%>/Edit">edit</a>
+<% } %>
+
+</div>
 <script>
     var slideIndex = 1;
 showSlides(slideIndex);
