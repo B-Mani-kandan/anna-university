@@ -249,6 +249,8 @@ app.put('/colledge/:id',isLoggedIn,isAuthor,upload.array('img'),catchAsync(async
     res.redirect(`/colledge/${clg._id}`)
 }))
 
+// colledge.findByIdAndDelete('60a8df7bd92ef05a88bc8c7a')
+
 app.delete('/colledge/:id',isLoggedIn,isAuthor, catchAsync(async(req,res)=>{
     const { id } = req.params;
     const clg = await colledge.findByIdAndDelete(id);

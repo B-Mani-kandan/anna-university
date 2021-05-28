@@ -27,8 +27,10 @@
     <p1><span>Name of the prinicple: </span><%= clg.NameofthePrincipal %></p1>
     <p1><span>Phonenumber: </span><%= clg.PhoneNumber%></p1>
     <p1><span>Faxnumber: </span><%= clg.FaxNumber %></p1>
-    <p1><span>Website: </span><%= clg.WebSite %></p1>
-    <p1><span>EmailID: </span><%= clg.EmailID %></p1>
+    <p1><span>Website: </span><a style="text-decoration: none;"
+       href="<%= clg.WebSite %>"><%= clg.WebSite %></a></p1>
+       <p1><span>EmailID: </span><a style="text-decoration: none;"
+        href="mailto:<%=clg.EmailID%>"><%= clg.EmailID%></a></p1>
     <p1><span>Year of YearofEstablishment: </span><%= clg.YearofEstablishment%></p1>
     <p1><span>Type: </span><%= clg.Type%></p1>
     <p1><span>MinorityStatus: </span><%= clg.MinorityStatus%></p1>
@@ -50,8 +52,8 @@
       <% } %> 
     <% } %>  
     <% if(currentUser){ %>
-    
-      <h2>Leave a Review</h2><span class="avgr">avg ratin:<span class="customstar">&#9733;</span><%= avgrating %>(<%=totalRating%>)</span>
+      <span class="avgr">avg ratin:<span class="customstar">&#9733;</span><%= avgrating %>(<%=totalRating%>)</span>
+      <h2>Leave a Review</h2>
       <form action="/colledge/<%=clg._id%>/reviews" method="POST" >
           <!-- <div class="mb-3">
               <label class="form-label" for="rating">Rating</label>
@@ -81,10 +83,12 @@
       <div class="reviewcon">
       <% for(let review of clg.reviews) { %>
             <div class="card-body-2">
+              
+             <div class="procondainer" style="margin-bottom: 15px;"><div class="propic" ><%= review.author.name[0].toUpperCase() %></div><b style="margin-left: 5px;"> <%= review.author.name %></b></div>
+
                 <p class="starability-result" data-rating="<%=review.rating%>">
                     Rated: <%= review.rating %> stars
                 </p>
-                <h3><span>By </span><%= review.author.name%></h3>
                 <p>Review: <%= review.body %></p>
                 <%  if( currentUser && review.author.equals(currentUser._id))  {%>
                 <form action="/colledge/<%=clg._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
@@ -114,8 +118,8 @@
   </div>
   <div class="question-ans">
     <% for(let qns of clg.question) { %>
-     
-      <p><%= qns.question %> &#8594;by <span style="color: green;"><%= qns.author.name %></span>  </p>
+      <div class="procondainer"><div class="propic" ><%= qns.author.name[0].toUpperCase() %></div><b style="margin-left: 5px;"> <%= qns.author.name %></b></div>
+      <p><%= qns.question %></p>
       <a href="/colledge/<%=clg._id%>/question/<%=qns._id%>">view answer</a>
 
       <%  if( currentUser && qns.author.equals(currentUser._id))  {%>
@@ -124,7 +128,6 @@
         </form>
         <% } %>
         <hr>
-
     <% } %>
   </div>
   </div>

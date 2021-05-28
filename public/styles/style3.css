@@ -495,7 +495,6 @@ nav{
 }
 
 .question-sec{
-  background-color: #c0ded9;
   padding-top: 10px;
   width: 30%;
   height: 100%;
@@ -564,3 +563,23 @@ nav{
   color: orange;
   font-size: 24px;
 }
+
+.propic{
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: #a8a8a8;
+  border-radius: 50% ;
+}
+
+.procondainer{
+display: flex;
+flex-direction: row;
+align-items: center;
+margin-bottom: -10px;
+margin-top: 14px;
+}
+
