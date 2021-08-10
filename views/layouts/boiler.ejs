@@ -19,7 +19,7 @@
           <i class="fas fa-bars"></i>
         </label>
         <label class="logo"></label>
-        <ul>
+        <ul class="ul-header">
           <li><a href="/colledge" >colledges</a></li>
           <li><a href="/">home</a></li>
           <% if(!currentUser) {%>
@@ -31,7 +31,11 @@
         </ul>
     </nav>
 
-
+    <div class="search">
+      <form method="GET" action="/search">
+         <input type="text" placeholder="search" name="search">
+      </form>
+    </div>
 
       <% if(success && success.length) {%>
         <div class="alert alert-success alert-dismissible fade show-3">
@@ -63,8 +67,12 @@
 
 
     <%- body %>
+    <footer>
+      <div>
+        Made with 
+        <br>
+        <i class="far fa-heart"></i>
+      </div>
+    </footer>
 </body>
-
-</body>
-
 </html>

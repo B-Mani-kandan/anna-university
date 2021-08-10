@@ -1,17 +1,29 @@
 <% layout('layouts/boiler')%>
 <link rel="stylesheet" href="/styles/question.css">
-
+<div class="container-qs">
       <div class="qs">
-      <h3>QUESTION:<%= qn.question %> <span class="auname">&#8594;<%=qn.author.name%></span></h3>
+      <div class="procondainer">
+        <div class="propic"  style="width: 40px; height: 40px;">
+       <%= qn.author.name[0].toUpperCase() %>
+      </div>
+      &nbsp; <h3> <span style="color: blue;"><%=  qn.author.name %> </span>
+        <br>
+        <%= qn.question %> </h3></div>
+
+    </div>
+    <div class="qs" style="margin-top: 30px; margin-bottom: 30px;">
+      <a class="btnqs"  href="/colledge/<%=clg._id%>" style="margin: 0; color: #1c1d1f;
+        background-color: transparent;
+        border: 1px solid #1c1d1f;">	&#8617; Back</a> 
     </div>
       <div class="answer">
         
           <form action="/colledge/<%=clg._id%>/answer/<%=qn._id%>" method="POST">
-              <label for="answer">Give a ansewr</label>
+              <label for="answer">Give a answer</label>
               <br>
-              <textarea name="answer" id="answer" cols="50" rows="3"></textarea>
+              <textarea name="answer" id="answer" cols="50" rows="3" style="width: 90%;"></textarea>
               <br>
-              <button class="btnqs" style="margin-left: 0;">submit</button>
+              <button class="btnqs" style="margin-left: 0;">Submit</button>
           </form>
           <% for(let ans of qn.answer) {%> 
           <p><%= ans.answer %> <span style="color: #777;"> <br> ---<%= ans.author.username %> </span></p>
@@ -25,7 +37,5 @@
             <hr>
            <% } %> 
       </div>
-      <div class="qs" style="margin-top: 30px; margin-bottom: 30px;">
-        <a class="btnqs" href="/colledge/<%=clg._id%>" style="margin: 0;">Back</a> 
-      </div>
- 
+   
+    </div>

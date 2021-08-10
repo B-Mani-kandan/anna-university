@@ -1,5 +1,4 @@
 .answer{
-    width: 80%;
     margin: 0 auto;
     border: 1px solid #777;
     padding: 15px;
@@ -10,7 +9,7 @@
 
 .qs{
     width: 80%;
-    margin: 0 auto;
+   margin-bottom: 30px;
 }
 
 .auname{
@@ -26,8 +25,13 @@
 }
 
 .map3{
-    width: 60%;
-    height: 100%;
+    width: 100%;
+    height: 500px;
+}
+
+.container-qs{
+    width: 80%;
+    margin: 0 auto;
 }
 @media only screen and (max-width: 600px) {
     .map3{
@@ -53,13 +57,15 @@
     .mapContainer{
         width: 100%;
         flex-direction: column;
-        height: 1000px;
     }
     .question-sec{
         width: 100%;
     }
     .btn-box{
         margin-left: 0;
+    }
+    .container-qs{
+        width: 100%;
     }
   }
 

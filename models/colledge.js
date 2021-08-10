@@ -69,4 +69,6 @@ colledgeSchema.post('findOneAndDelete', async function (doc) {
     }
 })
 
+colledgeSchema.index({ NameoftheCollege: 'text' });
+
 module.exports=mongoose.model('colledge',colledgeSchema);

@@ -25,28 +25,9 @@ body { margin: 0; padding: 0; }
     width: 30px;
     height: 30px;
     background-color: red;
-    position: absolute;
-    top: 490px;
-    left: 20px;
     border-radius: 50%;
 }
 
-.circle-2{
-    top: 440px;
-    background-color: #51bbd6;
-}
-
-.cirtext{
-    position: absolute;
-    top: 480px;
-    left: 60px;
-}
-
-.cirtext-2{
-    position:absolute;
-    top: 430px;
-    left: 60px;
-}
 
 .clgbutton{
     text-decoration: none;
@@ -70,7 +51,7 @@ body { margin: 0; padding: 0; }
 @media only screen and (max-width: 600px) {
     .homemap{
        flex-direction: column;
-       height: 1200px;
+       height: 800px;
     }
     #map{
         width: 100%;
@@ -78,24 +59,23 @@ body { margin: 0; padding: 0; }
     }
     .mapclg{
         width: 100%;
-        flex-direction: column;
     }
+    .card-body h3 {
+        font-size: 12px;
+    }
+
     .card{
         margin: 20px auto;
     }
-    .circle-2{
-        top: 800px;
-    }
-    .cirtext-2{
-        top: 790px;
-    }
-    .circle{
-        top: 750px;
-    }
-    .cirtext{
-        top: 740px;
-    }
+    
     .clgbutton{
-        top: 697px;
+        top: 293px;
     }
+    .card {
+        width: 45%;
+        height: 250px;
+    }
+     footer{
+         margin-top: 73px;
+     }
 }

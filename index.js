@@ -3,6 +3,7 @@ if(process.env.NODE_ENV !=='production')
     require('dotenv').config()
 }
 
+let  cors = require('cors'); 
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -15,7 +16,6 @@ const flash = require('connect-flash');
 const ejsMate = require('ejs-mate');
 const MongoDBStore=require('connect-mongo');
 const colledge = require('./models/colledge')
-
 const User = require('./models/user');
 const { isLoggedIn, isAuthor,isReviewAuthor,validateReview} = require('./middleware');
 const ExpressError = require('./utils/ExpressError');
@@ -139,6 +139,8 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
+
+
 app.use((req, res, next) => {
     res.locals.currentUser = req.user;
     res.locals.success = req.flash('success');
@@ -149,6 +151,15 @@ app.use((req, res, next) => {
 app.get('/',async(req,res)=>{
     const colledges=await colledge.find({})   
     res.render('index.ejs',{colledges})
+})
+
+app.get('/search',async(req,res)=>{
+    const search =req.query.search
+    const colledges=await colledge.find({
+        $text: {
+            $search: search
+        }})
+    res.render('search.ejs',{colledges})
 })
 
 app.get('/colledge',async(req,res)=>{

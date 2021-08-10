@@ -1,0 +1,20 @@
+<% layout('layouts/boiler')%>
+
+<h3 style="text-align: center; color: #777;">Search Results</h3>
+<% if(colledges.length===0){ %>
+    <h5 style="text-align: center; color: #777;">Sorry, No Results to Show</h5>
+    <% } %>  
+<div class="home" style="margin-bottom: 50px;">
+    <% for(let clg of colledges) { %>
+      <div class="card">
+          <div class="card-head">
+          <img src="<%=clg.img[0].url%>" alt="pic">
+          </div>
+          <div class="card-body">
+          <h3><%= clg.NameoftheCollege %></h3>
+          <a href="colledge/<%=clg._id%>">Show</a>
+          </div>
+          <br>
+      </div>
+      <% } %>
+  </div>
