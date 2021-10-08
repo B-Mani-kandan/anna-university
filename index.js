@@ -294,7 +294,7 @@ app.post('/create', catchAsync(async(req,res)=>{
         const registeredUser = await User.register(user, password);
         req.login(registeredUser, err => {
             if (err) return next(err);
-            req.flash('success', 'Welcome to Yelp Camp!');
+            req.flash('success', 'Welcome!');
             res.redirect('/colledge');
         })
     } catch (e) {
