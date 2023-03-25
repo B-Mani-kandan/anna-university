@@ -1,78 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="/styles/style3.css">
-    <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/styles/style3.css" />
+    <link
+      href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css"
+      rel="stylesheet"
+    />
     <script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
     <title>Anna University colledges</title>
-   
-</head>
-<body>
-    
+  </head>
+  <body>
     <nav>
-        <input type="checkbox" id="check">
-        <label for="check" class="checkbtn">
-          <i class="fas fa-bars"></i>
-        </label>
-        <label class="logo"></label>
-        <ul class="ul-header">
-          <li><a href="/colledge" >colleges</a></li>
-          <li><a href="/">home</a></li>
-          <% if(!currentUser) {%>
-            <li><a href="/login">login</a></li>
-            <li><a href="/create">create account</a></li>
-            <% } else {%>
-            <li><a href="/logout">logout</a></li>
-            <% } %>
-        </ul>
+      <input type="checkbox" id="check" />
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo"></label>
+      <ul class="ul-header">
+        <li><a href="/colledge">colleges</a></li>
+        <li><a href="/">home</a></li>
+        <% if(!currentUser) {%>
+        <li><a href="/login">login</a></li>
+        <li><a href="/create">create account</a></li>
+        <% } else {%>
+        <li><a href="/logout">logout</a></li>
+        <% } %>
+      </ul>
     </nav>
 
     <div class="search">
       <form method="GET" action="/search">
-         <input type="text" placeholder="search" name="search">
+        <input type="text" placeholder="search" name="search" />
       </form>
     </div>
 
-      <% if(success && success.length) {%>
-        <div class="alert alert-success alert-dismissible fade show-3">
-            <button type="button" class="close" >
-                <p1><%= success %></p1>
-                <span class="thistoclick">&times;</span>
-            </button>
-        </div>
-        <% } %>
-    
-        <% if(error && error.length) {%>
-            <div class="alert alert-fail alert-dismissible fade show-4">
-                <button type="button" class="close" >
-                    <p1><%= error %></p1>
-                    <span class="thistoclick">&times;</span>
-                </button>
-            </div>
-            <% } %>
+    <% if(success && success.length) {%>
+    <div class="alert alert-success alert-dismissible fade show-3">
+      <button type="button" class="close">
+        <p1><%= success %></p1>
+        <span class="thistoclick">&times;</span>
+      </button>
+    </div>
+    <% } %> <% if(error && error.length) {%>
+    <div class="alert alert-fail alert-dismissible fade show-4">
+      <button type="button" class="close">
+        <p1><%= error %></p1>
+        <span class="thistoclick">&times;</span>
+      </button>
+    </div>
+    <% } %>
 
-            
-            <script>
-              let close = document.getElementsByClassName('thistoclick')[0];
-              let removeel= document.getElementsByClassName('alert-dismissible')[0];
-              close.addEventListener('click',()=>{
-                removeel.remove();
-              })
-          </script>
-
-
+    <script>
+      let close = document.getElementsByClassName("thistoclick")[0];
+      let removeel = document.getElementsByClassName("alert-dismissible")[0];
+      close.addEventListener("click", () => {
+        removeel.remove();
+      });
+    </script>
 
     <%- body %>
-    <footer>
+    <!-- <footer>
       <div>
         Made with 
         <br>
         <i class="far fa-heart"></i>
       </div>
-    </footer>
-</body>
+    </footer> -->
+  </body>
 </html>
