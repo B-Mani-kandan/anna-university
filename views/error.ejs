@@ -1,10 +1,8 @@
 <% layout('layouts/boiler')%>
 
-
-
-    <div class="err-box">
-       <h3><%=err.message%></h3>
-        <% if(process.env.NODE_ENV !=='production'){ %> 
-       <p1><%= err.stack %></p1>
-       <% } %> 
-    </div>
+<div class="err-box">
+  <h3><%=err.message%></h3>
+  <% if(process.env.NODE_ENV !=='production'){ %>
+  <p1><%= err.stack %></p1>
+  <% } %>
+</div>

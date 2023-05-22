@@ -32,7 +32,8 @@ const Ans = require("./models/answer");
 const mongoSanitize = require("express-mongo-sanitize");
 const helmet = require("helmet");
 const MongoDBStore = require("connect-mongo");
-
+const Razorpay = require("razorpay");
+const shortid = require("shortid");
 const localdb = "mongodb://localhost:27017/anna";
 const Dburl = process.env.MONGO_URL;
 
@@ -90,6 +91,7 @@ const scriptSrcUrls = [
   "https://kit.fontawesome.com/",
   "https://cdnjs.cloudflare.com/",
   "https://cdn.jsdelivr.net",
+  "https://checkout.razorpay.com/",
 ];
 const styleSrcUrls = [
   "https://kit-free.fontawesome.com/",
@@ -106,12 +108,15 @@ const connectSrcUrls = [
   "https://a.tiles.mapbox.com/",
   "https://b.tiles.mapbox.com/",
   "https://events.mapbox.com/",
+  "https://checkout.razorpay.com/",
+  "https://lumberjack-cx.razorpay.com/",
+  "https://api.razorpay.com/",
 ];
 const fontSrcUrls = ["https://pro.fontawesome.com/"];
 app.use(
   helmet.contentSecurityPolicy({
     directives: {
-      defaultSrc: [],
+      defaultSrc: ["https://api.razorpay.com/"],
       connectSrc: ["'self'", ...connectSrcUrls],
       scriptSrc: ["'unsafe-inline'", "'self'", ...scriptSrcUrls],
       styleSrc: ["'self'", "'unsafe-inline'", ...styleSrcUrls],
@@ -195,6 +200,42 @@ app.post(
     res.redirect("/colledge");
   })
 );
+
+app.get("/enroll/:id", async (req, res) => {
+  const clg = await colledge.findById(req.params.id);
+  res.render("enroll", { clg, user: req.user });
+});
+
+app.post("/razorpay", async (req, res) => {
+  const razorpay = new Razorpay({
+    key_id: "rzp_test_f7vQ7iWdaQB2bY",
+    key_secret: "sRRfVWvFyEzsiSj8PMe86KO8",
+  });
+
+  const payment_capture = 1;
+
+  const currency = "INR";
+
+  let amount = 10000;
+
+  const options = {
+    amount: amount * 100,
+    currency,
+    receipt: shortid.generate(),
+    payment_capture,
+    notes: {
+      ...req.body,
+    },
+  };
+
+  const response = await razorpay.orders.create(options);
+
+  res.json({
+    id: response.id,
+    currency: response.currency,
+    amount: response.amount,
+  });
+});
 
 app.get("/colledge/:id", async (req, res) => {
   const clg = await colledge

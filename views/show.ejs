@@ -39,6 +39,9 @@
         <li><%= a %> </li>
        <% } %> 
     </ul>
+    <% if(currentUser) {%>
+    <a href="/enroll/<%=clg._id%>" class="enroll-btn">Enroll Now</a>
+    <% } %>  
     </div> 
     </div>
 

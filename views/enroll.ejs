@@ -1,0 +1,98 @@
+<% layout('layouts/boiler')%>
+<link rel="stylesheet" href="/styles/home.css">
+</head>
+<body>
+
+    <div class="enroll-page">
+        <h1>Enrollment Form</h1>
+        <div>
+          <h2><%= clg.NameoftheCollege %></h2>
+          <p><%= clg.Address %></p>
+          <form>
+            <div>
+              <label for="name">Full Name</label>
+              <input name="name" type="text" />
+    
+              <label for="address">Full Address</label>
+              <input name="address" type="text" />
+    
+              <label for="email">Email</label>
+              <input name="email" type="email" />
+    
+              <label for="number">Mobile number</label>
+              <input name="number" type="number" />
+    
+              <button
+                type="button"
+                class="enroll-btn"
+                style="margin-top: -1rem; border: 1px solid #1b9bff"
+                onclick="displayRazerpay()"
+              >
+                Pay advance
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+<script>
+   function loadScript(src) {
+      return new Promise((resolve) => {
+        const script = document.createElement("script");
+        script.src = src;
+        script.onload = () => {
+          resolve(true);
+        };
+        script.onerror = () => {
+          resolve(false);
+        };
+        document.body.appendChild(script);
+      });
+    }
+
+    const user = { user: <%- JSON.stringify(user) %>}
+
+    async function displayRazerpay(plan) {
+      const res = await loadScript(
+        "https://checkout.razorpay.com/v1/checkout.js"
+      );
+
+      if (!res) {
+        alert("Razorpay SDK failed to load. Are you online?");
+        return;
+      }
+
+      const data = await fetch("/razorpay", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: user.name,
+          email: user.email,
+        }),
+      }).then((t) => t.json());
+
+      let options = {
+        key: "rzp_test_f7vQ7iWdaQB2bY",
+        currency: data.currency,
+        amount: data.amount.toString(),
+        order_id: data.id,
+        name: "Pay advance",
+        description: "Thank you for approch over applying event",
+        // image: "http://localhost:1337/logo.svg",
+        handler: function () {
+          // router.reload("/");
+          console.log('hi')
+        },
+        prefill: {
+          name: user.Name,
+          email: user.email,
+        },
+      };
+      const paymentObject = new window.Razorpay(options);
+      paymentObject.open();
+    }
+</script>
+
+ 
